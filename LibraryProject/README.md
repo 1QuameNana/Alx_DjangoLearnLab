@@ -1,1 +1,0 @@
-'Library project on django'
