@@ -1,13 +1,10 @@
-Retrieve Book
+Instruction Retrieve and display all attributes of the book you just created.
 
-from bookshelf.modesls import Book
-""" Instruction to retrieve and display existing instances of Book
-"""
+from bookshelf.models import Book
+
 Command:
-
 Book.objects.get(title="1984")
+
 
 output:
 <Book: Book object (4)>
-
-
