@@ -1,6 +1,10 @@
+"""Instruction Create a Book instance with the title “1984”, author “George Orwell”, and publication year 1949
+from bookshelf.models import Book"""
 
 from bookshelf.models import Book
 
-# Create  Book
+command:
 
-Book = Book.objects.create(title ='Hellis', author ='John Newman', Publication_year = 2022)
+Book.objects.create(title="1984", author="George Orwell",publication_year=1949)
+
+output: <Book: Book object (4)>
