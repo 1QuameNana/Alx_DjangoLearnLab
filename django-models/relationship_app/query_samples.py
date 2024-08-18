@@ -1,6 +1,6 @@
 from relationship_app.models import Book, Author
 #Querry to search books by specific author
-Author.objects.get(name=author_name),objects.filter(author=Author)
+
 
 books_by_author = Author.objects.filter(author=Author)
 
