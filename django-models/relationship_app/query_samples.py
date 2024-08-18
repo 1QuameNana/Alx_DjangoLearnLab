@@ -13,5 +13,7 @@ for book in books:
 
 
 #Qery to retrieve Librarian
-librarian = Librarain.objects.get(libray=library)
+Librarian.objects.get(library=)
+
+librarian = Librarain.objects.get(libray= library)
 print(librarian.name)
