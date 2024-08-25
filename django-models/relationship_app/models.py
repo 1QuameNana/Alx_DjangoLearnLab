@@ -1,4 +1,14 @@
 from django.db import models
+from django.contrib.auth.models import User
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    ROLE_CHOICES = [
+        ('Admin', 'Admin'),
+        ('Librarian', 'Librarian'),
+        ('Member', 'Member')
+    ]
+    role = models.CharField(max_length=100, choices=ROLE_CHOICES)
 class Author(models.Model):
     # Define the author model
     name = models.CharField (max_length=200)
@@ -12,6 +22,12 @@ class Book(models.Model):
     def  __str__ (self):
         #returns the book name in a string format
         return self.name
+    class Meta:
+        permissions = [
+            ('can_add_book', 'Can add a book'),
+            ('can_change_book', 'Can change a book to another one'),
+            ('can_delete_book', 'Can delete a book from the list'),
+        ]
     
 class Library(models.Model):
     #Define the Library model

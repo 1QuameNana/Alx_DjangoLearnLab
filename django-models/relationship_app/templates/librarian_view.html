@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Librarian Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Librarian Dashboard</h1>
+
+    <div class="librarian-container">
+        <!-- Members Management Section -->
+        <div class="librarian-section">
+            <h2>Manage Members</h2>
+            <table class="librarian-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for member in members %}
+                    <tr>
+                        <td>{{ member.id }}</td>
+                        <td>{{ member.first_name }} {{ member.last_name }}</td>
+                        <td>{{ member.email }}</td>
+                        <td>
+                            <a href="{% url 'edit_member' member.id %}" class="btn">Edit</a> |
+                            <a href="{% url 'delete_member' member.id %}" class="btn">Delete</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">No members found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Books Management Section -->
+        <div class="librarian-section">
+            <h2>Manage Books</h2>
+            <table class="librarian-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>ISBN</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                    <tr>
+                        <td>{{ book.id }}</td>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.isbn }}</td>
+                        <td>
+                            <a href="{% url 'edit_book' book.id %}" class="btn">Edit</a> |
+                            <a href="{% url 'delete_book' book.id %}" class="btn">Delete</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5">No books found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{% url 'add_book' %}" class="btn">Add New Book</a>
+        </div>
+
+        <!-- Borrow/Return Status Section -->
+        <div class="librarian-section">
+            <h2>Borrow/Return Status</h2>
+            <table class="librarian-table">
+                <thead>
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Borrower</th>
+                        <th>Borrowed Date</th>
+                        <th>Return Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ transaction.book.title }}</td>
+                        <td>{{ transaction.borrower.get_full_name }}</td>
+                        <td>{{ transaction.borrowed_date }}</td>
+                        <td>{{ transaction.return_date }}</td>
+                        <td>{{ transaction.status }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5">No transactions found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

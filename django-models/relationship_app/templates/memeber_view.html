@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Member Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Member Dashboard</h1>
+
+    <div class="member-container">
+        <!-- Profile Section -->
+        <div class="member-section">
+            <h2>Your Profile</h2>
+            <table class="member-table">
+                <tr>
+                    <th>Name:</th>
+                    <td>{{ user.first_name }} {{ user.last_name }}</td>
+                </tr>
+                <tr>
+                    <th>Email:</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+            </table>
+            <a href="{% url 'edit_profile' %}" class="btn">Edit Profile</a>
+        </div>
+
+        <!-- Borrowed Books Section -->
+        <div class="member-section">
+            <h2>Your Borrowed Books</h2>
+            <table class="member-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Due Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in borrowed_books %}
+                    <tr>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.return_date }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3">You have not borrowed any books.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Available Books Section -->
+        <div class="member-section">
+            <h2>Available Books</h2>
+            <table class="member-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>ISBN</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in available_books %}
+                    <tr>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.isbn }}</td>
+                        <td>
+                            <a href="{% url 'borrow_book' book.id %}" class="btn">Borrow</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">No books available to borrow.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
