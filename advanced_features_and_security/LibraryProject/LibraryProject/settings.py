@@ -90,6 +90,8 @@ SECURE_HSTS_PRELOAD = True
 
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO','https')
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
