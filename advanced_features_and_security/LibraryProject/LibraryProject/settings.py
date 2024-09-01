@@ -84,6 +84,10 @@ SESSION_COOKIE_SECURE = True
 
 SECURE_SSL_REDIRECT = True
 
+SECURE_HSTS_SECONDS = 3153600
+
+SECURE_HSTS_PRELOAD = True
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
