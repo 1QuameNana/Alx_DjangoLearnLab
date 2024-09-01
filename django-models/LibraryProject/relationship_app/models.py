@@ -16,7 +16,7 @@ class Book(models.Model):
 class Library(models.Model):
     #Define the Library model
     name = models.CharField(max_length=200)
-    library = models.ManyToManyField(Boo'k')
+    library = models.ManyToManyField(Book)
 
     def __str__(self):
         #returns the string representation of the Library name
