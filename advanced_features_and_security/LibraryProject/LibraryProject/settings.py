@@ -88,6 +88,8 @@ SECURE_HSTS_SECONDS = 31536000
 
 SECURE_HSTS_PRELOAD = True
 
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
