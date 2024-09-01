@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>User Profile</h1>
+
+    <div class="profile-container">
+        <form method="post">
+            {% csrf_token %}
+            <div class="profile-section">
+                <h2>Personal Information</h2>
+                <p>
+                    <label for="id_first_name">First Name:</label>
+                    <input type="text" id="id_first_name" name="first_name" value="{{ user.first_name }}">
+                </p>
+                <p>
+                    <label for="id_last_name">Last Name:</label>
+                    <input type="text" id="id_last_name" name="last_name" value="{{ user.last_name }}">
+                </p>
+                <p>
+                    <label for="id_email">Email:</label>
+                    <input type="email" id="id_email" name="email" value="{{ user.email }}">
+                </p>
+            </div>
+
+            <div class="profile-section">
+                <h2>Change Password</h2>
+                <p>
+                    <label for="id_old_password">Old Password:</label>
+                    <input type="password" id="id_old_password" name="old_password">
+                </p>
+                <p>
+                    <label for="id_new_password">New Password:</label>
+                    <input type="password" id="id_new_password" name="new_password">
+                </p>
+                <p>
+                    <label for="id_confirm_password">Confirm New Password:</label>
+                    <input type="password" id="id_confirm_password" name="confirm_password">
+                </p>
+            </div>
+
+            <button type="submit">Save Changes</button>
+        </form>
+
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</body>
+</html>
