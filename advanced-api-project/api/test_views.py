@@ -3,8 +3,17 @@ from .models import Book, Author
 from .serializers import BookSerializer
 from rest_framework import status 
 from rest_framework import response.data
+from django.contrib.auth.models import User
 
 class BookCreateTest(APITestCase):
+    def setUp(self):
+        self.username = 'testUser'
+        self.password ='testtpas2009'
+        self.user = User.objects.create_user(username=self.name, password=self.password)
+        self.client.login(username=self.username, password=self.password)
+
+
+
     def setUp(self):
         self.author = Author.objects.create(name='Nacee')
 
@@ -15,6 +24,7 @@ class BookCreateTest(APITestCase):
             'publication_year': 2020
         }
 
+    
         #Create a Book
         serializer = BookSerializer(data=data)
         self.assertTrue(serializer.is_valid())
