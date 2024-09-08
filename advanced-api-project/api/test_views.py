@@ -1,19 +1,21 @@
 from django.test import APITestCase
 from .models import Book, Author
-from .seriealizers import BookSerializer
+from .serializers import BookSerializer
+from rest_framework import status 
+from rest_framework import response.data
 
 class BookCreateTest(APITestCase):
     def setUp(self):
-        self.author = Author.objects.create(name='Chimmamanda Ngozie')
+        self.author = Author.objects.create(name='Nacee')
 
     def test_create_book(self):
         data = {
-            'title': 'Purple Hibiscus',
+            'title': 'Onaapo',
             'author': self.author,
-            'publication_year': 2006
+            'publication_year': 2020
         }
 
-        #Create New Book
+        #Create a Book
         serializer = BookSerializer(data=data)
         self.assertTrue(serializer.is_valid())
         book = serializer.save()
